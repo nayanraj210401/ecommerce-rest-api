@@ -1,15 +1,17 @@
 package com.example.ecommerce.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import lombok.Data;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 
-@Data
 @Entity
-public class Product extends BaseModel{
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String name;
     private String description;
     private double price;

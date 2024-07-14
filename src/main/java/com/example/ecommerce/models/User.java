@@ -1,12 +1,18 @@
 package com.example.ecommerce.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
-public class User extends BaseModel{
+
+@Entity
+@Table(name = "app_user")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String email;
     private String password;
     private String firstName;
@@ -14,5 +20,5 @@ public class User extends BaseModel{
 
     // relations
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Order> orders;
+    private List<CustomerOrder> customerOrders;
 }
