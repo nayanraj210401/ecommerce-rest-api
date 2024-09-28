@@ -6,11 +6,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class Payment extends BaseModel {
+   
     @OneToOne
     @JoinColumn(name = "order_id")
     private CustomerOrder customerOrder;

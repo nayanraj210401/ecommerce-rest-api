@@ -6,12 +6,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "app_user")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class User extends BaseModel{
 
     private String email;
     private String password;

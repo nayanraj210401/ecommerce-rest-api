@@ -3,11 +3,7 @@ package com.example.ecommerce.models;
 import jakarta.persistence.*;
 
 @Entity
-public class OrderItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class OrderItem extends BaseModel {
 
     @ManyToOne
     private CustomerOrder customerOrder;

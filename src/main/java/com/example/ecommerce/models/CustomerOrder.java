@@ -8,11 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customer_order")
-public class CustomerOrder {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class CustomerOrder extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

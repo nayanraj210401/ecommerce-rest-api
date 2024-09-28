@@ -5,12 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Cart {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class Cart extends BaseModel{
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
