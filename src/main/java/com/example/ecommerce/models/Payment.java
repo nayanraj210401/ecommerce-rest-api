@@ -2,15 +2,18 @@ package com.example.ecommerce.models;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@Table(name="PAYMENT")
 public class Payment extends BaseModel {
    
     @OneToOne
     @JoinColumn(name = "order_id")
-    private CustomerOrder customerOrder;
+    private Order order;
 
     private String paymentMethod;
     private Double amount;

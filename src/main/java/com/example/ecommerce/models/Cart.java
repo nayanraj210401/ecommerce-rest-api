@@ -1,10 +1,13 @@
 package com.example.ecommerce.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
+@Data
+@Table(name = "CART")
 public class Cart extends BaseModel{
     @ManyToOne
     @JoinColumn(name = "user_id")

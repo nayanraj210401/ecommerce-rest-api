@@ -1,11 +1,14 @@
 package com.example.ecommerce.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 
 @Entity
+@Table(name="PRODUCTS")
+@Data
 public class Product extends BaseModel {
 
     private String name;
@@ -13,7 +16,6 @@ public class Product extends BaseModel {
     private double price;
     private String imageUrl;
 
-    // relations
     @ManyToMany(mappedBy = "products")
     private List<Cart> carts;
 }

@@ -1,11 +1,14 @@
 package com.example.ecommerce.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 
 @Entity
+@Data
+@Table(name = "\"user\"")
 public class User extends BaseModel{
 
     private String email;
@@ -15,5 +18,5 @@ public class User extends BaseModel{
 
     // relations
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CustomerOrder> customerOrders;
+    private List<Order> orders;
 }
