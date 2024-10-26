@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-
+import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
 @Data
-@Table(name = "\"user\"")
+@Table("users")
 public class User extends BaseModel{
 
     private String email;
