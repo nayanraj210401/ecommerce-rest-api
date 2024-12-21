@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/healthcheck")
+@RequestMapping("/health-check")
 public class HealthCheckController {
-  
-  @GetMapping("/")
-  public String healthCheck(@RequestParam String param) {
-     System.out.println("Health check endpoint hit with param: " + param);
+
+    @GetMapping
+  public String healthCheck() {
       return "OK...";
   }
 
