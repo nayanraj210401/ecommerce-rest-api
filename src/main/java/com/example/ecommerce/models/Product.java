@@ -1,21 +1,29 @@
 package com.example.ecommerce.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
+import java.math.BigDecimal;
 
 @Entity
-@Table(name="PRODUCTS")
 @Data
+@Table(name = "products")
+@EqualsAndHashCode(callSuper=false)
 public class Product extends BaseModel {
 
-    private String name;
-    private String description;
-    private double price;
-    private String imageUrl;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Cart> carts;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(length = 1000)
+    private String description;
+
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @Column(name="stock_quantity", nullable = false)
+    private Integer stockQuantity;
 }
