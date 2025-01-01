@@ -22,8 +22,8 @@ public class Order extends BaseModel {
     private OrderStatus status;
 
 //    implemented later when auth is created
-//    @Column(name = "user_id")
-//    private Long userId;
+    @Column(name = "user_id")
+    private Long userId;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
