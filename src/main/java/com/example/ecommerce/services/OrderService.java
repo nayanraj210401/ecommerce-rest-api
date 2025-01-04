@@ -43,7 +43,7 @@ public class OrderService {
     public OrderDTO createOrder(CreateOrderRequest request){
         Order order = new Order();
 //        implemented later
-//        order.setUserId(request.getUserId());
+       order.setUserId(request.getUserId());
 //        System.out.println("ORDER_CREATED NOW GET ORDER-ITEMS");
 //        System.out.println("Request items"+request.getItems());
         List<OrderItem> orderItems = request.getItems().stream()
@@ -100,7 +100,7 @@ public class OrderService {
         dto.setId(order.getId());
         dto.setTotalAmount(order.getTotalAmount());
         dto.setStatus(order.getStatus());
-//        dto.setUserId(order.getUserId(getUserId));
+       dto.setUserId(order.getUserId());
         dto.setCreatedAt(order.getCreatedAt());
         dto.setUpdatedAt(order.getUpdatedAt());
 

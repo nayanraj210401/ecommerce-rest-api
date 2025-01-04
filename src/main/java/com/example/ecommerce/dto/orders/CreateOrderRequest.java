@@ -12,5 +12,5 @@ public class CreateOrderRequest {
     private List<OrderItemRequest> items;
 
 //    Implement when auth is implemented
-//    private Long userId;
+   private Long userId;
 }
