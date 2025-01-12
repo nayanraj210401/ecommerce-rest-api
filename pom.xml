@@ -30,6 +30,9 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+    <modules>
+        <module>order-service</module>
+    </modules>
     <dependencies>
 
         <dependency>

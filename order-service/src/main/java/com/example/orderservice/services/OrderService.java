@@ -1,15 +1,14 @@
-package com.example.ecommerce.services;
+package com.example.orderservice.services;
 
-
-import com.example.ecommerce.dto.orders.CreateOrderRequest;
-import com.example.ecommerce.dto.orders.OrderDTO;
-import com.example.ecommerce.dto.orders.OrderItemDTO;
-import com.example.ecommerce.enums.OrderStatus;
-import com.example.ecommerce.models.Order;
-import com.example.ecommerce.models.OrderItem;
-import com.example.ecommerce.models.Product;
-import com.example.ecommerce.repositories.OrderRepo;
-import com.example.ecommerce.repositories.ProductRepo;
+import com.example.orderservice.dto.orders.CreateOrderRequest;
+import com.example.orderservice.dto.orders.OrderDTO;
+import com.example.orderservice.dto.orders.OrderItemDTO;
+import com.example.orderservice.enums.OrderStatus;
+import com.example.orderservice.models.Order;
+import com.example.orderservice.models.OrderItem;
+import com.example.orderservice.models.Product;
+import com.example.orderservice.repositories.OrderRepo;
+import com.example.orderservice.repositories.ProductRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +41,7 @@ public class OrderService {
     @Transactional
     public OrderDTO createOrder(CreateOrderRequest request){
         Order order = new Order();
-//        implemented later
-       order.setUserId(request.getUserId());
-//        System.out.println("ORDER_CREATED NOW GET ORDER-ITEMS");
-//        System.out.println("Request items"+request.getItems());
+        order.setUserId(request.getUserId());
         List<OrderItem> orderItems = request.getItems().stream()
                 .map(itemRequest -> {
                     Product product = productRepo.findById(itemRequest.getProductId())
@@ -55,9 +51,6 @@ public class OrderService {
                         throw new IllegalStateException("Insufficient stock for product: " + product.getName());
                     }
 
-//                    System.out.println("PRODUCT FETCHED: " + product.getName());
-
-                    // Update product stock
                     product.setStockQuantity(product.getStockQuantity() - itemRequest.getQuantity());
                     productRepo.save(product);
 
@@ -66,15 +59,11 @@ public class OrderService {
                     orderItem.setQuantity(itemRequest.getQuantity());
                     orderItem.setOrder(order);
                     orderItem.setUnitPrice(product.getPrice());
-//                    System.out.println("ORDER_ITEMS FETCHED: " + orderItem);
                     return orderItem;
                 }).collect(Collectors.toList());
 
         order.setOrderItems(orderItems);
 
-//        System.out.println("ORDER_ITEMS:" + orderItems);
-
-        // Compute total
         BigDecimal totalAmount = orderItems.stream()
                 .map(orderItem -> orderItem.getUnitPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -94,13 +83,12 @@ public class OrderService {
         return convertToDTO(updatedOrder);
     }
 
-
     private OrderDTO convertToDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
         dto.setTotalAmount(order.getTotalAmount());
         dto.setStatus(order.getStatus());
-       dto.setUserId(order.getUserId());
+        dto.setUserId(order.getUserId());
         dto.setCreatedAt(order.getCreatedAt());
         dto.setUpdatedAt(order.getUpdatedAt());
 
@@ -111,7 +99,6 @@ public class OrderService {
 
         return dto;
     }
-
 
     private OrderItemDTO convertToDTO(OrderItem orderItem) {
         OrderItemDTO dto = new OrderItemDTO();

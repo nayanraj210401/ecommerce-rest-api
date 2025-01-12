@@ -1,6 +1,6 @@
-package com.example.ecommerce.repositories;
+package com.example.orderservice.repositories;
 
-import com.example.ecommerce.models.Order;
+import com.example.orderservice.models.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
