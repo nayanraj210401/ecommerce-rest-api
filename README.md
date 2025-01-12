@@ -4,14 +4,6 @@ This document provides an overview of the REST API services available in the E-c
 
 ## API Services
 
-### OrderService
-- **Description**: Manages operations related to customer orders.
-- **Endpoints**:
-  - `GET /orders`: Retrieve all orders.
-  - `GET /orders/{id}`: Fetch a specific order by its ID.
-  - `POST /orders`: Create a new order.
-  - `PUT /orders/{id}/status`: Update the status of an existing order.
-
 ### AuthService
 - **Description**: Handles user authentication and registration processes.
 - **Endpoints**:
@@ -35,14 +27,6 @@ This document provides an overview of the REST API services available in the E-c
   - `DELETE /products/{id}`: Delete a product by its ID.
 
 ## Controllers
-
-### OrderController
-- **Description**: Handles HTTP requests for order-related operations.
-- **Endpoints**:
-  - `GET /api/orders`: Retrieve all orders.
-  - `GET /api/orders/{id}`: Fetch a specific order by its ID.
-  - `POST /api/orders`: Create a new order.
-  - `PUT /api/orders/{id}/status`: Update the status of an existing order.
 
 ### AuthController
 - **Description**: Manages HTTP requests for user authentication and registration.
@@ -89,41 +73,6 @@ This document provides an overview of the REST API services available in the E-c
 
 #### Lifecycle Callbacks:
 - `@PrePersist`: Initializes `createdAt` and `updatedAt` timestamps before the entity is persisted.
-
-### Order
-
-- **Package**: `com.example.ecommerce.models`
-- **Table Name**: `orders`
-- **Description**: Represents an order placed by a user.
-
-| Field       | Type          | Description                  | Constraints          |
-|-------------|---------------|------------------------------|----------------------|
-| totalAmount | BigDecimal    | Total amount of the order    | Non-nullable         |
-| status      | OrderStatus   | Status of the order          | Enum, Non-nullable   |
-| userId      | Long          | ID of the user who placed the order |                  |
-| orderItems  | List<OrderItem> | Items included in the order |                      |
-
-#### Lifecycle Callbacks:
-- `@PrePersist`: Initializes `createdAt`, `updatedAt`, and sets default `status` to `PENDING`.
-- `@PreUpdate`: Updates the `updatedAt` timestamp.
-
-### OrderItem
-
-- **Package**: `com.example.ecommerce.models`
-- **Table Name**: `order_items`
-- **Description**: Represents an item in an order.
-
-| Field     | Type       | Description                  | Constraints          |
-|-----------|------------|------------------------------|----------------------|
-| order     | Order      | The order to which this item belongs | Non-nullable         |
-| product   | Product    | The product being ordered    | Non-nullable         |
-| quantity  | Integer    | Quantity of the product ordered | Non-nullable         |
-| unitPrice | BigDecimal | Price per unit of the product | Non-nullable         |
-| subtotal  | BigDecimal | Calculated as `unitPrice * quantity` | Non-nullable         |
-
-#### Lifecycle Callbacks:
-- `@PrePersist`: Calculates `subtotal` and initializes timestamps.
-- `@PreUpdate`: Recalculates `subtotal` and updates the `updatedAt` timestamp.
 
 ### Product
 
