@@ -2,6 +2,25 @@
 
 This document provides an overview of the REST API services available in the E-commerce application. The API is designed to handle various operations related to orders, authentication, payments, and products.
 
+## Microservices Architecture
+
+The e-commerce application has been decomposed into smaller, independent services. Each service is responsible for a specific domain and can be developed, deployed, and scaled independently. The services communicate with each other using RESTful APIs and are registered with a service discovery tool (Eureka) for dynamic discovery and load balancing.
+
+### Services
+
+- **OrderService**: Manages operations related to customer orders.
+- **AuthService**: Handles user authentication and registration processes.
+- **PaymentService**: Manages payment processing and related operations.
+- **ProductService**: Manages operations related to products.
+
+### Service Discovery
+
+The application uses Eureka for service discovery. Each service registers itself with the Eureka server, and other services can discover and communicate with them dynamically. The Eureka server is configured in the `docker-compose.yml` file.
+
+### Load Balancing
+
+The application uses a load balancer to distribute requests among multiple instances of a service, ensuring high availability and fault tolerance. The load balancer is configured in the `docker-compose.yml` file.
+
 ## API Services
 
 ### OrderService
