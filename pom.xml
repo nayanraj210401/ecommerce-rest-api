@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>ecommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>ecommerce</name>
     <description>ecommerce</description>
     <url/>
