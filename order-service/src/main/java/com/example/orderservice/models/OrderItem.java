@@ -15,9 +15,8 @@ public class OrderItem extends BaseModel {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    private Long product;
 
     @Column(nullable = false)
     private Integer quantity;
