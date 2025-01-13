@@ -2,6 +2,7 @@ package com.example.ecommerce.services;
 
 import com.example.ecommerce.dto.orders.CreateOrderRequest;
 import com.example.ecommerce.dto.orders.OrderDTO;
+import com.example.ecommerce.dto.orders.OrderItemRequest;
 import com.example.ecommerce.enums.OrderStatus;
 import com.example.ecommerce.models.Order;
 import com.example.ecommerce.models.OrderItem;
@@ -16,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -68,12 +70,19 @@ public class OrderServiceTest {
         CreateOrderRequest request = new CreateOrderRequest();
         request.setUserId(1L);
         OrderItem orderItem = new OrderItem();
-        orderItem.setProduct(new Product());
-        orderItem.setQuantity(1);
-        request.setItems(Collections.singletonList(orderItem));
-
         Product product = new Product();
         product.setStockQuantity(10);
+        product.setPrice(BigDecimal.valueOf(100.00)); // Set a non-null price for the product
+        orderItem.setProduct(product);
+        orderItem.setQuantity(1);
+        orderItem.setUnitPrice(product.getPrice()); // Ensure unit price is set
+        List<OrderItemRequest> orderItemRequests = new ArrayList<>();
+        OrderItemRequest orderItemRequest = new OrderItemRequest();
+        orderItemRequest.setProductId(1L);
+        orderItemRequest.setQuantity(1);
+        orderItemRequests.add(orderItemRequest);
+        request.setItems(orderItemRequests);
+
         when(productRepo.findById(any(Long.class))).thenReturn(Optional.of(product));
         when(orderRepo.save(any(Order.class))).thenReturn(new Order());
 

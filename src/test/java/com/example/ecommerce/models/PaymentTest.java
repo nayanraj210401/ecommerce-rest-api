@@ -3,6 +3,8 @@ package com.example.ecommerce.models;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.example.ecommerce.enums.PaymentMethod;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
