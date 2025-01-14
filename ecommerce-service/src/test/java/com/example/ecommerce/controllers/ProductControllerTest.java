@@ -1,7 +1,7 @@
 package com.example.ecommerce.controllers;
 
-import com.example.ecommerce.dto.products.CreateProductRequest;
-import com.example.ecommerce.dto.products.ProductDTO;
+import com.example.common.dto.products.CreateProductRequest;
+import com.example.common.dto.products.ProductDTO;
 import com.example.ecommerce.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

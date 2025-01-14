@@ -1,9 +1,9 @@
 package com.example.ecommerce.services;
 
-import com.example.ecommerce.dto.payment.PaymentRequest;
-import com.example.ecommerce.dto.payment.PaymentResponse;
-import com.example.ecommerce.enums.PaymentStatus;
-import com.example.ecommerce.models.Payment;
+import com.example.common.dto.payment.PaymentRequest;
+import com.example.common.dto.payment.PaymentResponse;
+import com.example.common.enums.PaymentStatus;
+import com.example.common.models.Payment;
 import com.example.ecommerce.repositories.PaymentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

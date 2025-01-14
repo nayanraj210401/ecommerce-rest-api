@@ -1,7 +1,7 @@
 package com.example.ecommerce.controllers;
 
-import com.example.ecommerce.dto.payment.PaymentRequest;
-import com.example.ecommerce.dto.payment.PaymentResponse;
+import com.example.common.dto.payment.PaymentRequest;
+import com.example.common.dto.payment.PaymentResponse;
 import com.example.ecommerce.services.PaymentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

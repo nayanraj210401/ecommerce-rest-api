@@ -4,7 +4,7 @@
 
     <groupId>com.example</groupId> <!-- Replace with your organization's group ID -->
     <artifactId>common-libs</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>common-libs</name>
     <description>Shared library for common DTOs, models, and utilities</description>
@@ -17,12 +17,23 @@
 
     <dependencies>
         <!-- Add dependencies commonly used in DTOs and models -->
-
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
         <!-- Spring Boot Starter for shared utilities (if needed) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <scope>provided</scope>
+            <version>2.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.5.Final</version> <!-- Use the latest stable version -->
         </dependency>
 
         <!-- Jackson for JSON serialization/deserialization -->
@@ -32,14 +43,6 @@
             <version>2.15.2</version> <!-- Match with your services -->
         </dependency>
 
-        <!-- Lombok for cleaner DTOs (if used) -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.28</version> <!-- Match with your services -->
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Validation API (if DTOs need validation annotations) -->
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -47,12 +50,6 @@
             <version>3.0.2</version>
         </dependency>
 
-        <!-- Optional: PostgreSQL driver (if needed for testing models) -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>

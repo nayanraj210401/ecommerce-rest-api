@@ -1,7 +1,6 @@
 package com.example.ecommerce.services;
 
-import com.example.ecommerce.dto.payment.PaymentRequest;
-import com.example.ecommerce.dto.payment.PaymentResponse;
+import com.example.common.dto.payment.*;
 
 import java.util.List;
 

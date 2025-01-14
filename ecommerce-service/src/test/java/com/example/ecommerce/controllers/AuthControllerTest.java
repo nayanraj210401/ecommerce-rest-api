@@ -1,8 +1,8 @@
 package com.example.ecommerce.controllers;
 
-import com.example.ecommerce.dto.users.AuthResponse;
-import com.example.ecommerce.dto.users.LoginRequest;
-import com.example.ecommerce.dto.users.RegisterRequest;
+import com.example.common.dto.users.AuthResponse;
+import com.example.common.dto.users.LoginRequest;
+import com.example.common.dto.users.RegisterRequest;
 import com.example.ecommerce.services.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

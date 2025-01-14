@@ -1,6 +1,6 @@
 package com.example.ecommerce.services;
 
-import com.example.ecommerce.models.User;
+import com.example.common.models.User;
 import com.example.ecommerce.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

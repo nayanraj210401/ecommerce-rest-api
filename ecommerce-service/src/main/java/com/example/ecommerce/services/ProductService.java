@@ -1,9 +1,9 @@
 package com.example.ecommerce.services;
 
 
-import com.example.ecommerce.dto.products.CreateProductRequest;
-import com.example.ecommerce.dto.products.ProductDTO;
-import com.example.ecommerce.models.Product;
+import com.example.common.dto.products.CreateProductRequest;
+import com.example.common.dto.products.ProductDTO;
+import com.example.common.models.Product;
 import com.example.ecommerce.repositories.ProductRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -1,12 +1,11 @@
 package com.example.ecommerce.controllers;
 
 
-import com.example.ecommerce.dto.products.CreateProductRequest;
-import com.example.ecommerce.dto.products.ProductDTO;
+import com.example.common.dto.products.CreateProductRequest;
+import com.example.common.dto.products.ProductDTO;
 import com.example.ecommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

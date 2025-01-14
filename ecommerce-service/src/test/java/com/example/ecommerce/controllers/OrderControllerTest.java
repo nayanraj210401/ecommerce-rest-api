@@ -1,8 +1,8 @@
 package com.example.ecommerce.controllers;
 
-import com.example.ecommerce.dto.orders.CreateOrderRequest;
-import com.example.ecommerce.dto.orders.OrderDTO;
-import com.example.ecommerce.enums.OrderStatus;
+import com.example.common.dto.orders.CreateOrderRequest;
+import com.example.common.dto.orders.OrderDTO;
+import com.example.common.enums.OrderStatus;
 import com.example.ecommerce.services.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

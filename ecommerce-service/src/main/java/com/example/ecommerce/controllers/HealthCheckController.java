@@ -1,6 +1,6 @@
 package com.example.ecommerce.controllers;
 
-import com.example.ecommerce.dto.HealthDTO;
+import com.example.common.dto.HealthDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;

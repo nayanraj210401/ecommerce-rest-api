@@ -1,13 +1,13 @@
 package com.example.ecommerce.services;
 
 
-import com.example.ecommerce.dto.orders.CreateOrderRequest;
-import com.example.ecommerce.dto.orders.OrderDTO;
-import com.example.ecommerce.dto.orders.OrderItemDTO;
-import com.example.ecommerce.enums.OrderStatus;
-import com.example.ecommerce.models.Order;
-import com.example.ecommerce.models.OrderItem;
-import com.example.ecommerce.models.Product;
+import com.example.common.dto.orders.CreateOrderRequest;
+import com.example.common.dto.orders.OrderDTO;
+import com.example.common.dto.orders.OrderItemDTO;
+import com.example.common.enums.OrderStatus;
+import com.example.common.models.Order;
+import com.example.common.models.OrderItem;
+import com.example.common.models.Product;
 import com.example.ecommerce.repositories.OrderRepo;
 import com.example.ecommerce.repositories.ProductRepo;
 import jakarta.persistence.EntityNotFoundException;
