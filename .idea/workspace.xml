@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="872a139a-93c7-4560-96a7-59da5c506a84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/api-gateway/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/ApiGatewayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/test/java/com/example/apigateway/ApiGatewayApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-libs/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/OrderServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.devcontainer/devcontainer.json" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/.devcontainer/devcontainer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/EcommerceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/EcommerceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controllers/HealthCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/controllers/HealthCheckController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controllers/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/controllers/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/HealthDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/HealthDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/RequestStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/RequestStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/orders/CreateOrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/orders/CreateOrderRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/orders/OrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/orders/OrderDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/orders/OrderItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/orders/OrderItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/orders/OrderItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/orders/OrderItemRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/payment/PaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/payment/PaymentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/payment/PaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/payment/PaymentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/products/CreateProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/products/CreateProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/products/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/products/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/users/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/users/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/users/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/users/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/users/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/users/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dto/users/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/dto/users/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/enums/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/enums/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/enums/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/enums/PaymentMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/enums/PaymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/enums/PaymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/BaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/BaseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/repositories/OrderRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/repositories/OrderRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/repositories/PaymentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/repositories/PaymentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/repositories/ProductRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/repositories/ProductRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/repositories/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/repositories/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/PaymentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/services/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/services/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/controllers/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/controllers/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/controllers/OrderControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/controllers/OrderControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/controllers/PaymentControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/controllers/PaymentControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/controllers/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/models/OrderItemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/models/OrderItemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/models/OrderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/models/OrderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/models/PaymentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/models/PaymentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/models/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/models/ProductTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/models/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/models/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/services/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/services/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/services/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/services/OrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/services/PaymentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/services/PaymentServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ecommerce/services/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/test/java/com/example/ecommerce/services/ProductServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nayanraj210401&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nayanraj210401/ecommerce-rest-api.git&quot;,
+    &quot;accountId&quot;: &quot;b2d382d1-acde-42eb-85b1-4d2ce630c305&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2rbsHPN4wVo5fdibCBKf7pDbNVk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/nayanraj/Desktop/ecommerce-rest-api-1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ecommerce-service" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ecommerce-rest-api-1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ecommerce-rest-api-1" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="EcommerceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ecommerce" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ecommerce.EcommerceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="872a139a-93c7-4560-96a7-59da5c506a84" name="Changes" comment="" />
+      <created>1736839020453</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736839020453</updated>
+      <workItem from="1736839021611" duration="1584000" />
+      <workItem from="1736842559271" duration="349000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
