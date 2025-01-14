@@ -206,3 +206,69 @@ classDiagram
     OrderItem "1" --> "1" Product : refers to
     Order "1" --> "0..*" Payment : has
 ```
+
+## Monorepo Structure
+
+The repository is now organized as a monorepo with the following modules:
+
+- **api-gateway**: Handles routing and load balancing for the application using Spring Cloud Gateway.
+- **auth-service**: Manages user authentication and registration processes.
+- **order-service**: Manages operations related to customer orders.
+- **payment-service**: Manages payment processing and related operations.
+- **product-service**: Manages operations related to products.
+- **common**: Contains shared models, enums, and configuration files used across all services.
+
+## Building and Running the Monorepo
+
+To build and run the monorepo, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nayanraj210401/ecommerce-rest-api.git
+   cd ecommerce-rest-api
+   ```
+
+2. Build the project using Maven:
+   ```bash
+   ./mvnw clean install
+   ```
+
+3. Start the discovery service:
+   ```bash
+   cd discovery-service
+   ./mvnw spring-boot:run
+   ```
+
+4. Start the API gateway:
+   ```bash
+   cd ../api-gateway
+   ./mvnw spring-boot:run
+   ```
+
+5. Start the individual services (auth-service, order-service, payment-service, product-service) in separate terminal windows:
+   ```bash
+   cd ../auth-service
+   ./mvnw spring-boot:run
+
+   cd ../order-service
+   ./mvnw spring-boot:run
+
+   cd ../payment-service
+   ./mvnw spring-boot:run
+
+   cd ../product-service
+   ./mvnw spring-boot:run
+   ```
+
+6. The application should now be running with the API gateway handling routing and load balancing for the individual services.
+
+## Health Check Endpoints
+
+Each module includes a health check endpoint to verify the application's status. The health check endpoints are as follows:
+
+- **AuthService**: `GET /auth/health`
+- **OrderService**: `GET /orders/health`
+- **PaymentService**: `GET /payments/health`
+- **ProductService**: `GET /products/health`
+
+These endpoints can be used to monitor the health of each service and ensure they are running correctly.
