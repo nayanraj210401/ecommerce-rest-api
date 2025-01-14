@@ -11,14 +11,14 @@
     <name>discovery-service</name>
     <description>Discovery Service for the ecommerce application</description>
     <dependencies>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
+        </dependency> -->
     </dependencies>
     <build>
         <plugins>
