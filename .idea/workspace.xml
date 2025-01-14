@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="872a139a-93c7-4560-96a7-59da5c506a84" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-libs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common-libs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce-service/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/BaseModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-service/src/main/java/com/example/ecommerce/models/Product.java" afterDir="false" />
-    </list>
+    <list default="true" id="872a139a-93c7-4560-96a7-59da5c506a84" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +47,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "decouple-orders",
+    "git-widget-placeholder": "#14 on decouple-orders",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/nayanraj/Desktop/ecommerce-rest-api-1/common-libs/src/main/java/com/example/common/models",
     "node.js.detected.package.eslint": "true",
@@ -115,6 +107,7 @@
       <updated>1736839020453</updated>
       <workItem from="1736839021611" duration="1584000" />
       <workItem from="1736842559271" duration="1872000" />
+      <workItem from="1736849159985" duration="43000" />
     </task>
     <servers />
   </component>
