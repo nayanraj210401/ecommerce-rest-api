@@ -50,7 +50,43 @@ This project is a microservices-based e-commerce application. It consists of sev
 
 ## High-Level Design (HLD)
 
-![High-Level Design](./diagrams/hld.png)
+```mermaid
+%% Current Monolithic Architecture
+graph TD
+    subgraph "Current Monolithic Architecture"
+    Mono --> DB1[(Single Database)]
+    end
+
+%% Proposed Microservices Architecture
+    subgraph "Proposed Microservices Architecture"
+    Client2[Client Applications] --> API[API Gateway]
+    API --> LB2[Load Balancer]
+    LB2 --> Mono[Monolithic App<br/>All Services Combined<br/>- User Service<br/>- Product Service<br/>- Payment Service<br/>]
+    LB2 --> OS[Order Service Cluster]
+    
+    subgraph "Scaled Order Service"
+    OS --> OS1[Order Service Instance 1]
+    OS --> OS2[Order Service Instance 2]
+    OS --> OS3[Order Service Instance n]
+    end
+    
+    OS1 --> Cache[(Redis Cache)]
+    OS2 --> Cache
+    OS3 --> Cache
+    
+    OS1 --> MQ[Message Queue<br/>Kafka]
+    OS2 --> MQ
+    OS3 --> MQ
+    
+    OS1 --> OrderDB[(Order Database<br/>Sharded)]
+    OS2 --> OrderDB
+    OS3 --> OrderDB
+    
+    MQ --> NS[Notification Service]
+    end
+```
+
+
 
 ## Low-Level Design (LLD)
 
