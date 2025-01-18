@@ -1,8 +1,12 @@
-# Use openjdk:17-jdk-alpine as the base image for running the application
-FROM openjdk:17-jdk-alpine
+# Use openjdk:17-jdk-slim as the base image for running the application
+FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
+
+# Add a step to run ./mvnw clean package
+COPY . .
+RUN ./mvnw clean package
 
 # Copy the built WAR file from the build context to the runtime stage
 COPY target/ecommerce-0.0.1-SNAPSHOT.war ecommerce.war

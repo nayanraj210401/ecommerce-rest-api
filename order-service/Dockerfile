@@ -1,8 +1,12 @@
-# Use openjdk:17-jdk-alpine as the base image
-FROM openjdk:17-jdk-alpine
+# Use openjdk:17-jdk-slim as the base image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
+
+# Add a step to run `./mvnw clean package`
+COPY . .
+RUN ./mvnw clean package
 
 # Copy the built JAR file to the container
 COPY target/order-service-0.0.1-SNAPSHOT.jar order-service.jar
