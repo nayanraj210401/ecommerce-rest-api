@@ -6,10 +6,11 @@ WORKDIR /app
 
 # Add a step to run `./mvnw clean package`
 COPY . .
+
+# package the application
 RUN ./mvnw clean package
 
-# Copy the built JAR file to the container
-COPY target/api-gateway-0.0.1-SNAPSHOT.jar api-gateway.jar
+RUN mv target/api-gateway-0.0.1-SNAPSHOT.jar api-gateway.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080

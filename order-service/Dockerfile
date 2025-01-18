@@ -9,7 +9,7 @@ COPY . .
 RUN ./mvnw clean package
 
 # Copy the built JAR file to the container
-COPY target/order-service-0.0.1-SNAPSHOT.jar order-service.jar
+RUN mv target/order-service-0.0.1-SNAPSHOT.jar order-service.jar
 
 # Expose the port that the application will run on
 EXPOSE 8081

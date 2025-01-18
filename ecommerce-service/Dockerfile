@@ -9,7 +9,7 @@ COPY . .
 RUN ./mvnw clean package
 
 # Copy the built WAR file from the build context to the runtime stage
-COPY target/ecommerce-0.0.1-SNAPSHOT.war ecommerce.war
+RUN mv target/ecommerce-0.0.1-SNAPSHOT.war ecommerce.war
 
 # Expose the port that the application will run on
 EXPOSE 8083
