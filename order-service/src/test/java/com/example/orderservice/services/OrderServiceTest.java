@@ -1,4 +1,4 @@
-package com.example.ecommerce.services;
+package com.example.orderservice.services;
 
 import com.example.common.dto.orders.CreateOrderRequest;
 import com.example.common.dto.orders.OrderDTO;
@@ -7,9 +7,9 @@ import com.example.common.enums.OrderStatus;
 import com.example.common.models.Order;
 import com.example.common.models.OrderItem;
 import com.example.common.models.Product;
-import com.example.ecommerce.repositories.OrderRepo;
-import com.example.ecommerce.repositories.ProductRepo;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.orderservice.models.CachedOrder;
+import com.example.orderservice.repo.ProductRepo;
+import com.example.orderservice.repo.OrderRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -44,7 +45,7 @@ public class OrderServiceTest {
 
     @Test
     public void testGetAllOrders() {
-        Order order = new Order();
+        CachedOrder order = new CachedOrder();
         when(orderRepo.findAll()).thenReturn(Collections.singletonList(order));
 
         List<OrderDTO> orders = orderService.getAllOrders();
@@ -56,7 +57,7 @@ public class OrderServiceTest {
     @Test
     public void testGetOrderById() {
         Long orderId = 1L;
-        Order order = new Order();
+        CachedOrder order = new CachedOrder();
         when(orderRepo.findById(orderId)).thenReturn(Optional.of(order));
 
         OrderDTO orderDTO = orderService.getOrderById(orderId);
@@ -84,12 +85,12 @@ public class OrderServiceTest {
         request.setItems(orderItemRequests);
 
         when(productRepo.findById(any(Long.class))).thenReturn(Optional.of(product));
-        when(orderRepo.save(any(Order.class))).thenReturn(new Order());
+        when(orderRepo.save(any(CachedOrder.class))).thenReturn(new CachedOrder());
 
         OrderDTO orderDTO = orderService.createOrder(request);
 
         assertNotNull(orderDTO);
-        verify(orderRepo, times(1)).save(any(Order.class));
+        verify(orderRepo, times(1)).save(any(CachedOrder.class));
         verify(productRepo, times(1)).save(any(Product.class));
     }
 
@@ -97,15 +98,15 @@ public class OrderServiceTest {
     public void testUpdateOrderStatus() {
         Long orderId = 1L;
         OrderStatus status = OrderStatus.SHIPPED;
-        Order order = new Order();
+        CachedOrder order = new CachedOrder();
         when(orderRepo.findById(orderId)).thenReturn(Optional.of(order));
-        when(orderRepo.save(any(Order.class))).thenReturn(order);
+        when(orderRepo.save(any(CachedOrder.class))).thenReturn(order);
 
         OrderDTO orderDTO = orderService.updateOrderStatus(orderId, status);
 
         assertNotNull(orderDTO);
         assertEquals(status, orderDTO.getStatus());
         verify(orderRepo, times(1)).findById(orderId);
-        verify(orderRepo, times(1)).save(any(Order.class));
+        verify(orderRepo, times(1)).save(any(CachedOrder.class));
     }
 }

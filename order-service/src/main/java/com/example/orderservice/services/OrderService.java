@@ -1,4 +1,4 @@
-package com.example.ecommerce.services;
+package com.example.orderservice.services;
 
 
 import com.example.common.dto.orders.CreateOrderRequest;
@@ -8,8 +8,9 @@ import com.example.common.enums.OrderStatus;
 import com.example.common.models.Order;
 import com.example.common.models.OrderItem;
 import com.example.common.models.Product;
-import com.example.ecommerce.repositories.OrderRepo;
-import com.example.ecommerce.repositories.ProductRepo;
+import com.example.orderservice.models.CachedOrder;
+import com.example.orderservice.repo.OrderRepo;
+import com.example.orderservice.repo.ProductRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,14 @@ public class OrderService {
     }
 
     public OrderDTO getOrderById(Long id){
-        Order order = orderRepo.findById(id).orElseThrow( () -> new EntityNotFoundException("Order not found"));
+        CachedOrder order = orderRepo.findById(id).orElseThrow( () -> new EntityNotFoundException("Order not found"));
         return convertToDTO(order);
     }
 
     @Transactional
     public OrderDTO createOrder(CreateOrderRequest request){
-        Order order = new Order();
-//        implemented later
+        CachedOrder order = new CachedOrder();
        order.setUserId(request.getUserId());
-//        System.out.println("ORDER_CREATED NOW GET ORDER-ITEMS");
-//        System.out.println("Request items"+request.getItems());
         List<OrderItem> orderItems = request.getItems().stream()
                 .map(itemRequest -> {
                     Product product = productRepo.findById(itemRequest.getProductId())
@@ -54,8 +52,6 @@ public class OrderService {
                     if (product.getStockQuantity() < itemRequest.getQuantity()) {
                         throw new IllegalStateException("Insufficient stock for product: " + product.getName());
                     }
-
-//                    System.out.println("PRODUCT FETCHED: " + product.getName());
 
                     // Update product stock
                     product.setStockQuantity(product.getStockQuantity() - itemRequest.getQuantity());
@@ -66,13 +62,10 @@ public class OrderService {
                     orderItem.setQuantity(itemRequest.getQuantity());
                     orderItem.setOrder(order);
                     orderItem.setUnitPrice(product.getPrice());
-//                    System.out.println("ORDER_ITEMS FETCHED: " + orderItem);
                     return orderItem;
                 }).collect(Collectors.toList());
 
         order.setOrderItems(orderItems);
-
-//        System.out.println("ORDER_ITEMS:" + orderItems);
 
         // Compute total
         BigDecimal totalAmount = orderItems.stream()
@@ -80,17 +73,17 @@ public class OrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         order.setTotalAmount(totalAmount);
-        Order savedOrder =  orderRepo.save(order);
+        CachedOrder savedOrder =  orderRepo.save(order);
         return convertToDTO(savedOrder);
     }
 
     @Transactional
     public OrderDTO updateOrderStatus(Long id, OrderStatus newStatus) {
-        Order order = orderRepo.findById(id)
+        CachedOrder order = orderRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
         order.setStatus(newStatus);
 
-        Order updatedOrder = orderRepo.save(order);
+        CachedOrder updatedOrder = orderRepo.save(order);
         return convertToDTO(updatedOrder);
     }
 
