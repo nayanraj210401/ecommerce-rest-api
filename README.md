@@ -90,4 +90,60 @@ graph TD
 
 ## Low-Level Design (LLD)
 
-![Low-Level Design](./diagrams/lld.png)
+```mermaid
+classDiagram
+    class User {
+        Long id
+        String email
+        String password
+        String firstName
+        String lastName
+        Set<String> roles
+        LocalDateTime createdAt
+        LocalDateTime updatedAt
+    }
+    class Order {
+        Long id
+        BigDecimal totalAmount
+        OrderStatus status
+        Long userId
+        List<OrderItem> orderItems
+        LocalDateTime createdAt
+        LocalDateTime updatedAt
+    }
+    class OrderItem {
+        Long id
+        Order order
+        Product product
+        Integer quantity
+        BigDecimal unitPrice
+        BigDecimal subtotal
+        LocalDateTime createdAt
+        LocalDateTime updatedAt
+    }
+    class Product {
+        Long id
+        String name
+        String description
+        BigDecimal price
+        Integer stockQuantity
+        LocalDateTime createdAt
+        LocalDateTime updatedAt
+    }
+    class Payment {
+        Long id
+        String transactionId
+        BigDecimal amount
+        PaymentStatus status
+        PaymentMethod paymentMethod
+        Long orderId
+        LocalDateTime paymentDate
+        String failureReason
+        LocalDateTime createdAt
+        LocalDateTime updatedAt
+    }
+    User "1" --> "0..*" Order : places
+    Order "1" --> "0..*" OrderItem : contains
+    OrderItem "1" --> "1" Product : refers to
+    Order "1" --> "0..*" Payment : has
+```
