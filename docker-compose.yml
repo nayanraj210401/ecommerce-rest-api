@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ecommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  discovery-service:
+    build:
+      context: ./discovery-service
+    depends_on:
+      - db
+    ports:
+      - "8761:8761"
+
+  order-service:
+    build:
+      context: ./order-service
+    depends_on:
+      - discovery-service
+      - db
+    ports:
+      - "8081:8081"
+
+  ecommerce-service:
+    build:
+      context: ./ecommerce-service
+    depends_on:
+      - discovery-service
+      - db
+    ports:
+      - "8083:8083"
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    depends_on:
+      - discovery-service
+      - order-service
+      - ecommerce-service
+    ports:
+      - "8080:8080"
