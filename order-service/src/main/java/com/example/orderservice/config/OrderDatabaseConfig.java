@@ -12,6 +12,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import com.zaxxer.hikari.HikariDataSource;
+
 import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -21,36 +24,38 @@ import java.util.Map;
 // OrderDatabaseConfig.java (your existing database)
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.example.orderservice.repo",
+        basePackages = "com.example.orderservice.repo.order",
         entityManagerFactoryRef = "orderEntityManagerFactory",
         transactionManagerRef = "orderTransactionManager"
 )
 public class OrderDatabaseConfig {
     @Primary
     @Bean(name = "orderDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource")
+    // @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource orderDataSource() {
-        return DataSourceBuilder.create().build();
+        HikariDataSource source = new HikariDataSource();
+        source.setJdbcUrl("jdbc:postgresql://localhost:5432/order-db");
+        source.setUsername("postgres");
+        source.setPassword("postgres");
+        source.setDriverClassName("org.postgresql.Driver");
+        return source;
     }
 
     @Primary
     @Bean(name = "orderEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean orderEntityManagerFactory(
+        EntityManagerFactoryBuilder builder,
             @Qualifier("orderDataSource") DataSource dataSource) {
-
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
-        em.setPackagesToScan("com.example.orderservice.models");
-
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        em.setJpaPropertyMap(properties);
-
-        return em;
+        
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.common.models")
+                .properties(properties)
+                .persistenceUnit("orders")
+                .build();
     }
 
     @Primary

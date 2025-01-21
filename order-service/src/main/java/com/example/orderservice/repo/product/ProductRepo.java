@@ -1,7 +1,6 @@
-package com.example.orderservice.repo;
+package com.example.orderservice.repo.product;
 
 import com.example.common.models.Product;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

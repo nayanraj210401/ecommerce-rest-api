@@ -8,14 +8,15 @@ import com.example.common.enums.OrderStatus;
 import com.example.common.models.Order;
 import com.example.common.models.OrderItem;
 import com.example.common.models.Product;
-import com.example.orderservice.models.CachedOrder;
-import com.example.orderservice.repo.OrderRepo;
-import com.example.orderservice.repo.ProductRepo;
+import com.example.orderservice.repo.order.OrderRepo;
+import com.example.orderservice.repo.product.ProductRepo;
+
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +24,15 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
 
-    @Autowired
     private OrderRepo orderRepo;
+    private ProductRepo productRepo;
 
     @Autowired
-    private ProductRepo productRepo;
+    public OrderService(@Qualifier("productEntityManagerFactory") EntityManagerFactory productEntityManagerFactory,
+                       ProductRepo productRepo, OrderRepo orderRepo) {
+        this.productRepo = productRepo;
+        this.orderRepo = orderRepo;
+    }
 
     public List<OrderDTO> getAllOrders(){
         return orderRepo.findAll().stream()
@@ -36,13 +41,13 @@ public class OrderService {
     }
 
     public OrderDTO getOrderById(Long id){
-        CachedOrder order = orderRepo.findById(id).orElseThrow( () -> new EntityNotFoundException("Order not found"));
+        Order order = orderRepo.findById(id).orElseThrow( () -> new EntityNotFoundException("Order not found"));
         return convertToDTO(order);
     }
 
     @Transactional
     public OrderDTO createOrder(CreateOrderRequest request){
-        CachedOrder order = new CachedOrder();
+        Order order = new Order();
        order.setUserId(request.getUserId());
         List<OrderItem> orderItems = request.getItems().stream()
                 .map(itemRequest -> {
@@ -73,17 +78,17 @@ public class OrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         order.setTotalAmount(totalAmount);
-        CachedOrder savedOrder =  orderRepo.save(order);
+        Order savedOrder =  orderRepo.save(order);
         return convertToDTO(savedOrder);
     }
 
     @Transactional
     public OrderDTO updateOrderStatus(Long id, OrderStatus newStatus) {
-        CachedOrder order = orderRepo.findById(id)
+        Order order = orderRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
         order.setStatus(newStatus);
 
-        CachedOrder updatedOrder = orderRepo.save(order);
+        Order updatedOrder = orderRepo.save(order);
         return convertToDTO(updatedOrder);
     }
 
