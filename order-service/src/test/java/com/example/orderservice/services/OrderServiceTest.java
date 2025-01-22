@@ -4,18 +4,17 @@ import com.example.common.dto.orders.CreateOrderRequest;
 import com.example.common.dto.orders.OrderDTO;
 import com.example.common.dto.orders.OrderItemRequest;
 import com.example.common.enums.OrderStatus;
-import com.example.common.models.Order;
-import com.example.common.models.OrderItem;
 import com.example.common.models.Product;
-// import com.example.orderservice.models.CachedOrder;
-import com.example.orderservice.repo.order.OrderRepo;
-import com.example.orderservice.repo.product.ProductRepo;
+import com.example.common.models.orders.Order;
+import com.example.common.models.orders.OrderItem;
+import com.example.orderservice.repo.OrderRepo;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class OrderServiceTest {
     private OrderRepo orderRepo;
 
     @Mock
-    private ProductRepo productRepo;
+    private RestTemplate restTemplate;
 
     @InjectMocks
     private OrderService orderService;
@@ -71,13 +70,6 @@ public class OrderServiceTest {
     public void testCreateOrder() {
         CreateOrderRequest request = new CreateOrderRequest();
         request.setUserId(1L);
-        OrderItem orderItem = new OrderItem();
-        Product product = new Product();
-        product.setStockQuantity(10);
-        product.setPrice(BigDecimal.valueOf(100.00)); // Set a non-null price for the product
-        orderItem.setProduct(product);
-        orderItem.setQuantity(1);
-        orderItem.setUnitPrice(product.getPrice()); // Ensure unit price is set
         List<OrderItemRequest> orderItemRequests = new ArrayList<>();
         OrderItemRequest orderItemRequest = new OrderItemRequest();
         orderItemRequest.setProductId(1L);
@@ -85,14 +77,20 @@ public class OrderServiceTest {
         orderItemRequests.add(orderItemRequest);
         request.setItems(orderItemRequests);
 
-        when(productRepo.findById(any(Long.class))).thenReturn(Optional.of(product));
+        Product product = new Product();
+        product.setId(1L);
+        product.setName("Test Product");
+        product.setStockQuantity(10);
+        product.setPrice(BigDecimal.valueOf(100.00)); // Set a non-null price for the product
+
+        when(restTemplate.getForObject(anyString(), eq(Product.class))).thenReturn(product);
         when(orderRepo.save(any(Order.class))).thenReturn(new Order());
 
         OrderDTO orderDTO = orderService.createOrder(request);
 
         assertNotNull(orderDTO);
         verify(orderRepo, times(1)).save(any(Order.class));
-        verify(productRepo, times(1)).save(any(Product.class));
+        verify(restTemplate, times(1)).getForObject(anyString(), eq(Product.class));
     }
 
     @Test

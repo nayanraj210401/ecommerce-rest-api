@@ -1,6 +1,8 @@
-package com.example.common.models;
+package com.example.common.models.orders;
 
 import com.example.common.enums.OrderStatus;
+import com.example.common.models.BaseModel;
+
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

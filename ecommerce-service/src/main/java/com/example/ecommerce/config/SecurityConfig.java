@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -36,8 +37,13 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/products").permitAll()
-                .requestMatchers("/api/products/**").authenticated()
-                .requestMatchers("/api/orders/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/products/**").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/products/**").access((authentication, context) -> 
+                    new org.springframework.security.authorization.AuthorizationDecision(
+                        context.getRequest().getRemoteAddr().equals("127.0.0.1")
+                    )
+                )
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session

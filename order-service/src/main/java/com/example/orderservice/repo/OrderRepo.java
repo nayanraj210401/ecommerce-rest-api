@@ -1,8 +1,10 @@
-package com.example.orderservice.repo.order;
+package com.example.orderservice.repo;
 
-import com.example.common.models.Order;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.example.common.models.orders.Order;
 
 import java.util.List;
 
