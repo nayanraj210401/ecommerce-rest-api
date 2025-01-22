@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.example.orderservice.repo")
-@EntityScan(basePackages = "com.example.common.models")
+@EntityScan(basePackages = "com.example.common.models.orders")
 @EnableDiscoveryClient
 public class OrderServiceApplication {
 	public static void main(String[] args) {
