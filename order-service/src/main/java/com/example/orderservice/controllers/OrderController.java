@@ -1,9 +1,9 @@
-package com.example.ecommerce.controllers;
+package com.example.orderservice.controllers;
 
 import com.example.common.dto.orders.CreateOrderRequest;
 import com.example.common.dto.orders.OrderDTO;
 import com.example.common.enums.OrderStatus;
-import com.example.ecommerce.services.OrderService;
+import com.example.orderservice.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

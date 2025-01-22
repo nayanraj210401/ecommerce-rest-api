@@ -1,19 +1,19 @@
-package com.example.ecommerce.services;
-
+package com.example.orderservice.services;
 
 import com.example.common.dto.orders.CreateOrderRequest;
 import com.example.common.dto.orders.OrderDTO;
 import com.example.common.dto.orders.OrderItemDTO;
 import com.example.common.enums.OrderStatus;
-import com.example.common.models.Order;
-import com.example.common.models.OrderItem;
 import com.example.common.models.Product;
-import com.example.ecommerce.repositories.OrderRepo;
-import com.example.ecommerce.repositories.ProductRepo;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+import com.example.common.models.orders.Order;
+import com.example.common.models.orders.OrderItem;
+import com.example.orderservice.repo.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,53 +26,56 @@ public class OrderService {
     private OrderRepo orderRepo;
 
     @Autowired
-    private ProductRepo productRepo;
+    private RestTemplate restTemplate;
+    private String productServiceUrl = "http://localhost:8083/api/products/";
 
-    public List<OrderDTO> getAllOrders(){
+
+    // @Autowired
+    // public OrderService(OrderRepo orderRepo, RestTemplate restTemplate) {
+    //     this.orderRepo = orderRepo;
+    //     this.restTemplate = restTemplate;
+    // }
+
+    public List<OrderDTO> getAllOrders() {
         return orderRepo.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
-    public OrderDTO getOrderById(Long id){
-        Order order = orderRepo.findById(id).orElseThrow( () -> new EntityNotFoundException("Order not found"));
+    public OrderDTO getOrderById(Long id) {
+        Order order = orderRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
         return convertToDTO(order);
     }
 
     @Transactional
-    public OrderDTO createOrder(CreateOrderRequest request){
+    public OrderDTO createOrder(CreateOrderRequest request) {
         Order order = new Order();
-//        implemented later
-       order.setUserId(request.getUserId());
-//        System.out.println("ORDER_CREATED NOW GET ORDER-ITEMS");
-//        System.out.println("Request items"+request.getItems());
+        order.setUserId(request.getUserId());
         List<OrderItem> orderItems = request.getItems().stream()
                 .map(itemRequest -> {
-                    Product product = productRepo.findById(itemRequest.getProductId())
-                            .orElseThrow(() -> new EntityNotFoundException("Product not found"));
+                    Product product = getProductFromApi(itemRequest.getProductId());
+
+                    if (product == null) {
+                        throw new EntityNotFoundException("Product with ID " + itemRequest.getProductId() + " not found");
+                    }
 
                     if (product.getStockQuantity() < itemRequest.getQuantity()) {
                         throw new IllegalStateException("Insufficient stock for product: " + product.getName());
                     }
 
-//                    System.out.println("PRODUCT FETCHED: " + product.getName());
-
                     // Update product stock
                     product.setStockQuantity(product.getStockQuantity() - itemRequest.getQuantity());
-                    productRepo.save(product);
+                    updateProductStockInApi(product);
 
                     OrderItem orderItem = new OrderItem();
-                    orderItem.setProduct(product);
+                    orderItem.setProductId(product.getId());
                     orderItem.setQuantity(itemRequest.getQuantity());
                     orderItem.setOrder(order);
                     orderItem.setUnitPrice(product.getPrice());
-//                    System.out.println("ORDER_ITEMS FETCHED: " + orderItem);
                     return orderItem;
                 }).collect(Collectors.toList());
 
         order.setOrderItems(orderItems);
-
-//        System.out.println("ORDER_ITEMS:" + orderItems);
 
         // Compute total
         BigDecimal totalAmount = orderItems.stream()
@@ -80,7 +83,7 @@ public class OrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         order.setTotalAmount(totalAmount);
-        Order savedOrder =  orderRepo.save(order);
+        Order savedOrder = orderRepo.save(order);
         return convertToDTO(savedOrder);
     }
 
@@ -94,13 +97,22 @@ public class OrderService {
         return convertToDTO(updatedOrder);
     }
 
+    private Product getProductFromApi(Long productId) {
+        String url = productServiceUrl + productId;
+        return restTemplate.getForObject(url, Product.class);
+    }
+
+    private void updateProductStockInApi(Product product) {
+        String url = productServiceUrl + product.getId();
+        restTemplate.put(url, product);
+    }
 
     private OrderDTO convertToDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
         dto.setTotalAmount(order.getTotalAmount());
         dto.setStatus(order.getStatus());
-       dto.setUserId(order.getUserId());
+        dto.setUserId(order.getUserId());
         dto.setCreatedAt(order.getCreatedAt());
         dto.setUpdatedAt(order.getUpdatedAt());
 
@@ -112,12 +124,14 @@ public class OrderService {
         return dto;
     }
 
-
     private OrderItemDTO convertToDTO(OrderItem orderItem) {
         OrderItemDTO dto = new OrderItemDTO();
         dto.setId(orderItem.getId());
-        dto.setProductId(orderItem.getProduct().getId());
-        dto.setProductName(orderItem.getProduct().getName());
+        dto.setProductId(orderItem.getProductId());
+
+        Product product = getProductFromApi(orderItem.getProductId());
+        dto.setProductName(product.getName());
+
         dto.setQuantity(orderItem.getQuantity());
         dto.setUnitPrice(orderItem.getUnitPrice());
         dto.setSubtotal(orderItem.getSubtotal());
