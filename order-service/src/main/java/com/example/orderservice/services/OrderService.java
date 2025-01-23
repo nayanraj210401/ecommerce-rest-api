@@ -9,6 +9,7 @@ import com.example.common.models.orders.Order;
 import com.example.common.models.orders.OrderItem;
 import com.example.orderservice.repo.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,14 +28,11 @@ public class OrderService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     private String productServiceUrl = "http://localhost:8083/api/products/";
-
-
-    // @Autowired
-    // public OrderService(OrderRepo orderRepo, RestTemplate restTemplate) {
-    //     this.orderRepo = orderRepo;
-    //     this.restTemplate = restTemplate;
-    // }
 
     public List<OrderDTO> getAllOrders() {
         return orderRepo.findAll().stream()
@@ -93,8 +91,17 @@ public class OrderService {
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
         order.setStatus(newStatus);
 
+        if (newStatus == OrderStatus.SUCCESS) {
+            sendOrderStatusToKafka(order);
+        }
+
         Order updatedOrder = orderRepo.save(order);
         return convertToDTO(updatedOrder);
+    }
+
+    private void sendOrderStatusToKafka(Order order) {
+        String message = "Order ID: " + order.getId() + " Status: " + order.getStatus();
+        kafkaTemplate.send("order-status-topic", message);
     }
 
     private Product getProductFromApi(Long productId) {
