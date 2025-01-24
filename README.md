@@ -147,3 +147,18 @@ classDiagram
     OrderItem "1" --> "1" Product : refers to
     Order "1" --> "0..*" Payment : has
 ```
+
+### Performance Improvement Reports 
+- After moving from Molithic Architecture, We reduce the response time signficatly, For more details you can go through the reports
+1. With old Architecture - [performance-report](https://github.com/nayanraj210401/ecommerce-rest-api/blob/main/perf-ecom-rest-without-microservice.html)
+2. With the Proposed Architecture - [performance-report](https://github.com/nayanraj210401/ecommerce-rest-api/blob/main/perf-ecom-rest-with-microservice.html)
+
+#### Old Architecture
+<img width="795" alt="image" src="https://github.com/user-attachments/assets/b1b06bca-c4f1-4a78-aa00-b2195d57b034" />
+
+#### New Architecture
+<img width="813" alt="image" src="https://github.com/user-attachments/assets/54093d84-9c91-4d2f-a09b-c88f26ac8e22" />
+
+
+
+
