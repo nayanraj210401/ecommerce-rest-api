@@ -8,6 +8,9 @@ import com.example.common.models.Product;
 import com.example.common.models.orders.Order;
 import com.example.common.models.orders.OrderItem;
 import com.example.orderservice.repo.OrderRepo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,9 +28,18 @@ public class OrderService {
     @Autowired
     private OrderRepo orderRepo;
 
+
+    @Autowired
+    private CacheService<Long, OrderDTO> cacheService;
+
+    @Autowired
+    private CacheService<String, Object> globalCacheService;
+
     @Autowired
     private RestTemplate restTemplate;
     private String productServiceUrl = "http://localhost:8083/api/products/";
+
+    private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
 
     // @Autowired
@@ -37,14 +49,38 @@ public class OrderService {
     // }
 
     public List<OrderDTO> getAllOrders() {
-        return orderRepo.findAll().stream()
+        List<OrderDTO> cachedOrders = (List<OrderDTO>) globalCacheService.get("allOrders");
+        if (cachedOrders != null) {
+            System.out.println("Cache hit for all orders");
+            return cachedOrders;
+        }
+        
+        List<OrderDTO> orders = orderRepo.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
+
+        // Update global cache
+        globalCacheService.put("allOrders", orders);
+
+        return orders;
     }
 
     public OrderDTO getOrderById(Long id) {
+         // Check in Redis cache
+         OrderDTO cachedOrder = cacheService.get(id);
+         if (cachedOrder != null) {
+            System.out.println("Cache hit for order: " + id);
+             return cachedOrder;
+         }
+
         Order order = orderRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
-        return convertToDTO(order);
+
+        OrderDTO orderDTO = convertToDTO(order);
+
+        // Update Redis cache
+        cacheService.put(id, orderDTO);
+
+        return orderDTO;
     }
 
     @Transactional
@@ -84,7 +120,13 @@ public class OrderService {
 
         order.setTotalAmount(totalAmount);
         Order savedOrder = orderRepo.save(order);
-        return convertToDTO(savedOrder);
+        
+        OrderDTO orderDTO = convertToDTO(savedOrder);
+
+        // Add the created order to Redis
+        cacheService.put(savedOrder.getId(), orderDTO);
+
+        return orderDTO;
     }
 
     @Transactional
@@ -94,7 +136,30 @@ public class OrderService {
         order.setStatus(newStatus);
 
         Order updatedOrder = orderRepo.save(order);
-        return convertToDTO(updatedOrder);
+
+      
+
+        if(updatedOrder.getStatus() == OrderStatus.CANCELLED) {
+            // Refund the stock
+            updatedOrder.getOrderItems().forEach(orderItem -> {
+                Product product = getProductFromApi(orderItem.getProductId());
+                product.setStockQuantity(product.getStockQuantity() + orderItem.getQuantity());
+                updateProductStockInApi(product);
+            });
+        }
+
+
+        OrderDTO orderDTO = convertToDTO(updatedOrder);
+
+        if(updatedOrder.getStatus() == OrderStatus.DELIVERED){
+            // Clear the order from Redis
+            cacheService.evict(id);
+        }else{
+            // Update the order in Redis
+            cacheService.put(id, orderDTO);
+        }
+
+        return orderDTO;
     }
 
     private Product getProductFromApi(Long productId) {
@@ -136,5 +201,13 @@ public class OrderService {
         dto.setUnitPrice(orderItem.getUnitPrice());
         dto.setSubtotal(orderItem.getSubtotal());
         return dto;
+    }
+
+    public String getOrderJson(OrderDTO order) {
+        return gson.toJson(order);
+    }
+
+    public OrderDTO getOrderFromJson(String json) {
+        return gson.fromJson(json, OrderDTO.class);
     }
 }
